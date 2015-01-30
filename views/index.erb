@@ -16,3 +16,20 @@
 
   <button type="submit">Add Band</button>
 </form>
+
+<p>Current venues:</p>
+
+<ul>
+  <% @venues.each() do |venue| %>
+    <li><%= venue.name() %></li>
+  <% end %>
+</ul>
+
+<p>Add a new venue:</p>
+
+<form action="/venues" method="post">
+  <label for="name">Venue Name</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add Venue</button>
+</form>
