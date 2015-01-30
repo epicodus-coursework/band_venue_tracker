@@ -1,0 +1,18 @@
+<h1>Band Tracker</h1>
+
+<p>Current bands:</p>
+
+<ul>
+  <% @bands.each() do |band| %>
+    <li><%= band.name() %></li>
+  <% end %>
+</ul>
+
+<p>Add a new band:</p>
+
+<form action="/bands" method="post">
+  <label for="name">Band Name</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add Band</button>
+</form>
