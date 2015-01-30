@@ -11,14 +11,24 @@ end
 
 post("/bands") do
   name = params.fetch("name")
-  @band = Band.create({:name => name})
-  redirect("/")
+  @band = Band.new({:name => name, :done => false})
+  @band.save()
+  if @band.save()
+    redirect("/")
+  else
+    erb(:band_errors)
+  end
 end
 
 post("/venues") do
   name = params.fetch("name")
-  @venue = Venue.create({:name => name})
-  redirect("/")
+  @venue = Venue.new({:name => name, :done => false})
+  @venue.save()
+  if @venue.save()
+    redirect("/")
+  else
+    erb(:venue_errors)
+  end
 end
 
 get('/bands/:id/edit') do
