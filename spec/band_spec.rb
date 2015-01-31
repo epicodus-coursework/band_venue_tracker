@@ -10,4 +10,6 @@ describe(Band) do
     band = Band.create({:name => "new band"})
     expect(band.name()).to(eq("New band"))
   end
+
+  it { should have_and_belong_to_many(:venues) }
 end

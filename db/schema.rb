@@ -11,29 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130223836) do
+ActiveRecord::Schema.define(version: 20150131002751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bands", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean  "done"
   end
 
-  create_table "bands_venues", force: :cascade do |t|
-    t.integer  "band_id"
-    t.integer  "venue_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "bands_venues", id: false, force: :cascade do |t|
+    t.integer "band_id"
+    t.integer "venue_id"
   end
+
+  add_index "bands_venues", ["band_id"], name: "index_bands_venues_on_band_id", using: :btree
+  add_index "bands_venues", ["venue_id"], name: "index_bands_venues_on_venue_id", using: :btree
 
   create_table "venues", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean  "done"
   end
 

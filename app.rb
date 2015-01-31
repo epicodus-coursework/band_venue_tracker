@@ -33,6 +33,7 @@ end
 
 get('/bands/:id/edit') do
   @band = Band.find(params.fetch("id").to_i())
+  @venues = Venue.all()
   erb(:band_edit)
 end
 
