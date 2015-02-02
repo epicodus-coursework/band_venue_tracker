@@ -9,22 +9,13 @@ get("/") do
   erb(:index)
 end
 
-get("/bands") do
-  @bands = Band.all()
-  erb(:bands)
-end
-
-get("/venues") do
-  @venues = Venue.all()
-  erb(:venues)
-end
-
 post("/bands") do
   name = params.fetch("name")
   @band = Band.new({:name => name, :done => false})
   @band.save()
   if @band.save()
-    redirect("/bands")
+    @venues = Venue.all()
+    erb(:band_info)
   else
     erb(:band_errors)
   end
@@ -74,6 +65,15 @@ end
 delete("/bands/:id") do
   @band = Band.find(params.fetch("id").to_i())
   @band.delete()
+  @bands = Band.all()
+  @venues = Venue.all()
+  erb(:index)
+end
+
+patch("/band_name/:id") do
+  name = params.fetch("name")
+  @band = Band.find(params.fetch("id").to_i())
+  @band.update({:name => name})
   @bands = Band.all()
   @venues = Venue.all()
   erb(:index)

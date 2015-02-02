@@ -12,7 +12,7 @@
   <p>No venues yet!</p>
 <% end %>
 
-<h3>Add venues below:</h3>
+<h3>Update venues below:</h3>
 
 <% if @venues.any?() %>
   <form action="/bands/<%= @band.id %>" method="post">
@@ -26,10 +26,22 @@
       </div>
     <% end %>
 
-    <button type="submit">Add venues</button>
+    <button type="submit">Update venues</button>
   </form>
 <% end %>
 
-<p><a href="/bands">Return to all bands</a></p>
+<form action="/band_name/<%= @band.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="name">Update <%=@band.name() %>'s name:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Update</button>
+</form>
+
+<form action="/bands/<%= @band.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete Band</button>
+</form>
 
 <p><a href="/">Return to Main Page</a></p>
