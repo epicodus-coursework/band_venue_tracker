@@ -2,34 +2,32 @@
 
 <p>Current bands:</p>
 
-<ul>
-  <% @bands.each() do |band| %>
-    <li><%= band.name() %><a href="/bands/<%= band.id() %>/edit">Edit</a></li>
-  <% end %>
-</ul>
+<% if @bands.any?() %>
+  <p>Select a band to see which venues they're played:</p>
 
-<p>Add a new band:</p>
+  <ul>
+    <% @bands.each() do |band| %>
+      <li><a href="/bands/<%= band.id() %>"><%= band.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No bands yet!</p>
+<% end %>
 
-<form action="/bands" method="post">
-  <label for="name">Band Name</label>
-  <input id="name" name="name" type="text">
-
-  <button type="submit">Add Band</button>
-</form>
+<p><a href="/bands">Add a new band:</a></p>
 
 <p>Current venues:</p>
 
-<ul>
-  <% @venues.each() do |venue| %>
-    <li><%= venue.name() %></li>
-  <% end %>
-</ul>
+<% if @venues.any?() %>
+  <p>Select a venue to see which bands have played:</p>
 
-<p>Add a new venue:</p>
+  <ul>
+    <% @venues.each() do |venue| %>
+      <li><a href="/venues/<%= venue.id() %>"><%= venue.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No venues yet!</p>
+<% end %>
 
-<form action="/venues" method="post">
-  <label for="name">Venue Name</label>
-  <input id="name" name="name" type="text">
-
-  <button type="submit">Add Venue</button>
-</form>
+<p><a href="/venues">Add a new venue:</a></p>
