@@ -12,7 +12,7 @@
 
   <ul>
     <% @venues.each do |venue| %>
-      <li><a href="/venue/<%= venue.id() %>"><%= venue.name() %></a></li>
+      <li><a href="/venues/<%= venue.id() %>"><%= venue.name() %></a></li>
     <% end %>
   </ul>
 <% else %>

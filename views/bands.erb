@@ -12,7 +12,7 @@
 
   <ul>
     <% @bands.each do |band| %>
-      <li><a href="/band/<%= band.id() %>"><%= band.name() %></a></li>
+      <li><a href="/bands/<%= band.id() %>"><%= band.name() %></a></li>
     <% end %>
   </ul>
 <% else %>
