@@ -1,12 +1,18 @@
 <h1>Band Tracker</h1>
 
-<p>Current bands:</p>
+<h3>Current bands:</h3>
 
-<ul>
-  <% @bands.each() do |band| %>
-    <li><%= band.name() %><a href="/bands/<%= band.id() %>/edit">Edit</a></li>
-  <% end %>
-</ul>
+<% if @bands.any?() %>
+  <p>Select a band to see which venues they've played:</p>
+
+  <ul>
+    <% @bands.each() do |band| %>
+      <li><a href="/bands/<%= band.id() %>"><%= band.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No bands yet!</p>
+<% end %>
 
 <p>Add a new band:</p>
 
@@ -17,13 +23,19 @@
   <button type="submit">Add Band</button>
 </form>
 
-<p>Current venues:</p>
+<h3>Current venues:</h3>
 
-<ul>
-  <% @venues.each() do |venue| %>
-    <li><%= venue.name() %></li>
-  <% end %>
-</ul>
+<% if @venues.any?() %>
+  <p>Select a venue to see which bands have played:</p>
+
+  <ul>
+    <% @venues.each() do |venue| %>
+      <li><a href="/venues/<%= venue.id() %>"><%= venue.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No venues yet!</p>
+<% end %>
 
 <p>Add a new venue:</p>
 
