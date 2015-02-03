@@ -1,8 +1,13 @@
-<h3>Oops there were some errors:</h3>
-<ul>
-  <% @band.errors().full_messages().each() do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
+<h1>Error</h1>
+
+<div class="well well-sm">
+  <h3>Oops there were some errors:</h3>
+
+  <ul class="list-unstyled">
+    <% @band.errors().full_messages().each() do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
 
 <h5><a href="/" >Return to Main Page to try again</a></h5>

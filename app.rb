@@ -62,18 +62,18 @@ patch("/venues/:id") do
   erb(:venue_info)
 end
 
-delete("/bands/:id") do
+patch("/band_name/:id") do
+  name = params.fetch("name")
   @band = Band.find(params.fetch("id").to_i())
-  @band.delete()
+  @band.update({:name => name})
   @bands = Band.all()
   @venues = Venue.all()
   erb(:index)
 end
 
-patch("/band_name/:id") do
-  name = params.fetch("name")
+delete("/band_name/:id") do
   @band = Band.find(params.fetch("id").to_i())
-  @band.update({:name => name})
+  @band.delete()
   @bands = Band.all()
   @venues = Venue.all()
   erb(:index)
