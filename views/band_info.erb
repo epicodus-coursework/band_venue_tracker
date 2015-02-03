@@ -1,47 +1,58 @@
 <h1><%= @band.name() %></h1>
 
-<% if @band.venues().any?() %>
-  <h3>Here are all the venues this band has played:</h3>
+<div class="well well-sm">
+  <% if @band.venues().any?() %>
+    <h3>Here are all the venues <%=@band.name() %> has played:</h3>
 
-  <ul>
-    <% @band.venues().each() do |venue| %>
-      <li><%= venue.name() %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No venues yet!</p>
-<% end %>
+    <ul class="list-unstyled">
+      <% @band.venues().each() do |venue| %>
+        <li><%= venue.name() %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h3>No venues yet!</h3>
+  <% end %>
+</div>
 
-<h3>Update venues below:</h3>
+<div class="well well-sm">
+  <h3>Update venues below:</h3>
 
-<% if @venues.any?() %>
-  <form action="/bands/<%= @band.id %>" method="post">
-    <input type="hidden" name="_method" value="patch">
+  <% if @venues.any?() %>
+    <form action="/bands/<%= @band.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
 
-    <% @venues.each() do |venue| %>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="venue_ids[]" value="<%= venue.id() %>"><%= venue.name() %>
-        </label>
-      </div>
-    <% end %>
+      <% @venues.each() do |venue| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="venue_ids[]" value="<%= venue.id() %>"><%= venue.name() %>
+          </label>
+        </div>
+      <% end %>
 
-    <button type="submit">Update venues</button>
+      <button type="submit" class="btn btn-default">Update venues</button>
+    </form>
+  <% end %>
+</div>
+
+<div class="well well-sm">
+  <h3>Update <%=@band.name() %>'s name:</h3>
+
+  <form class="form-inline" action="/band_name/<%= @band.id() %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="name">New name:</label>
+    <input class="form-control" id="name" name="name" type="text">
+    <button type="submit" class="btn btn-default">Update</button>
   </form>
-<% end %>
+</div>
 
-<form action="/band_name/<%= @band.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="name">Update <%=@band.name() %>'s name:</label>
-  <input id="name" name="name" type="text">
+<div class="well well-sm">
+  <h3>Delete <%=@band.name() %>:</h3>
 
-  <button type="submit">Update</button>
-</form>
+  <form class="form-inline" action="/band_name/<%= @band.id() %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn btn-default">Delete</button>
+  </form>
+</div>
 
-<form action="/bands/<%= @band.id() %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete Band</button>
-</form>
 
 <p><a href="/">Return to Main Page</a></p>

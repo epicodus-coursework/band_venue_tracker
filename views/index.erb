@@ -1,47 +1,55 @@
 <h1>Band Tracker</h1>
 
-<h3>Current bands:</h3>
+<div class="well well-sm">
+  <h3>Current bands:</h3>
 
-<% if @bands.any?() %>
-  <p>Select a band to see which venues they've played:</p>
+  <% if @bands.any?() %>
+    <p>Select a band to see which venues they've played:</p>
 
-  <ul>
-    <% @bands.each() do |band| %>
-      <li><a href="/bands/<%= band.id() %>"><%= band.name() %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No bands yet!</p>
-<% end %>
+    <ul class="list-unstyled">
+      <% @bands.each() do |band| %>
+        <li><a href="/bands/<%= band.id() %>"><%= band.name() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No bands yet!</p>
+  <% end %>
+</div>
 
-<p>Add a new band:</p>
+<div class="well well-sm">
+  <form class="form-inline" action="/bands" method="post">
+    <div class="form-group">
+      <label for="name">Add a new band:</label>
+      <input class="form-control" id="name" name="name" type="text">
+    </div>
 
-<form action="/bands" method="post">
-  <label for="name">Band Name</label>
-  <input id="name" name="name" type="text">
+    <button type="submit" class="btn btn-default">Add Band</button>
+  </form>
+</div>
 
-  <button type="submit">Add Band</button>
-</form>
+<div class="well well-sm">
+  <h3>Current venues:</h3>
 
-<h3>Current venues:</h3>
+  <% if @venues.any?() %>
+    <p>Select a venue to see which bands have played:</p>
 
-<% if @venues.any?() %>
-  <p>Select a venue to see which bands have played:</p>
+    <ul class="list-unstyled">
+      <% @venues.each() do |venue| %>
+        <li><a href="/venues/<%= venue.id() %>"><%= venue.name() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No venues yet!</p>
+  <% end %>
+</div>
 
-  <ul>
-    <% @venues.each() do |venue| %>
-      <li><a href="/venues/<%= venue.id() %>"><%= venue.name() %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No venues yet!</p>
-<% end %>
+<div class="well well-sm">
+  <form class="form-inline" action="/venues" method="post">
+    <div class="form-group">
+      <label for="name">Add a new venue:</label>
+      <input  class="form-control"id="name" name="name" type="text">
+    </div>
 
-<p>Add a new venue:</p>
-
-<form action="/venues" method="post">
-  <label for="name">Venue Name</label>
-  <input id="name" name="name" type="text">
-
-  <button type="submit">Add Venue</button>
-</form>
+    <button type="submit" class="btn btn-default">Add Venue</button>
+  </form>
+</div>
